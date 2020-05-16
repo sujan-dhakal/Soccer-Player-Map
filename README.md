@@ -6,4 +6,4 @@
 
 Home Page:
 
-<img src="images/home.png">
+<img src="images/home.png" width=500>
