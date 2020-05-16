@@ -11,6 +11,7 @@ Home Page:
 Select Parameters and Click Submit:
 
 <img src="images/map1.png" width=500>
+
 <img src="images/league.png" width=250>
 
 Further Zoom-In:
