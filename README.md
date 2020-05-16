@@ -4,5 +4,6 @@
 
 (Note: For Privacy Issue, the database has been deleted.)
 
-Choose Parameters from the Dropdown menu and Click Submit:
+Home Page:
 
+<img src="images/home.png">
