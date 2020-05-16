@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<!-- Custom styles for this template -->
+<style>
+    body {
+        padding-top: 5rem;
+    }
+
+    .starter-template {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+</style>
+<!-- <link href="starter-template.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <main role="main" class="container">
+        <div class="container">
+            <div class="btn-group">
+                <!-- <button type="button" class="btn btn-primary">League</button> -->
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-value="League">
+                    League
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" data-value="Patriot League">Patriot League</a>
+                    <a class="dropdown-item" href="#" data-value="Ivy League">Ivy League</a>
+                    <a class="dropdown-item" href="#" data-value="American League">American League</a>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" data-value="Positions">
+                    Positions
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">All</a>
+                    <a class="dropdown-item" href="#">GK</a>
+                    <a class="dropdown-item" href="#">DF</a>
+                    <a class="dropdown-item" href="#">MF</a>
+                    <a class="dropdown-item" href="#">FW</a>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-value="Start Yrs">
+                    Start Yrs
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">1</a>
+                    <a class="dropdown-item" href="#">2</a>
+                    <a class="dropdown-item" href="#">3</a>
+                    <a class="dropdown-item" href="#">4</a>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-value="All Conference Yrs">
+                    All Conference Yrs
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">1</a>
+                    <a class="dropdown-item" href="#">2</a>
+                    <a class="dropdown-item" href="#">3</a>
+                    <a class="dropdown-item" href="#">4</a>
+                </div>
+            </div>
+        </div>
+        <p>
+            <hr />
+            <p></p>
+            <div>
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Hometown</th>
+                            <th scope="col">State</th>
+                            <th scope="col">College</th>
+                            <th scope="col">High School</th>
+                            <th scope="col">Height</th>
+                            <th scope="col">Weight</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for player in players %}
+                        <tr>
+                            <th scope="row">{{player.id}}</th>
+                            <td>{{ player.first_name}}</td>
+                            <td>{{ player.last_name}}</td>
+                            <td>{{ player.home_town }}</td>
+                            <td>{{ player.state_or_country }}</td>
+                            <td>{{ player.college_id.Name }}</td>
+                            <td>{{ player.high_school_id }}</td>
+                            <td>{{ player.Height }}</td>
+                            <td>{{ player.Weight }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </main><!-- /.container -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script>
+        //$('.dropdown-toggle').dropdown();
+
+        // Update text in dropdown
+        $(".dropdown-menu a").click(function () {
+            var parent = $(this).parents('.btn-group').find('.btn');
+            var label = parent.data('value');
+            parent.html('<span>' + label + ': ' + $(this).text() + '</span>');
+            parent.val($(this).data('value'));
+        });
+    </script>
+    {% endblock %}

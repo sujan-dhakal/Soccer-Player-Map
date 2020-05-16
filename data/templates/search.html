@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% load static %}
+
+<script>
+    var temp1 = "{{hs_json|escapejs|safe}}";
+    var hs_json = JSON.parse(temp1);
+
+    var temp2 = "{{players_json|escapejs|safe}}";
+    var players_json = JSON.parse(temp2);
+
+    var temp3 = "{{college_json|escapejs|safe}}";
+    var college_json = JSON.parse(temp3);
+</script>
+
+<main role="main" class="container">
+
+    <form method="POST" class="player-form form-inline">{% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary my-1">Submit</button>
+    </form>
+
+    <p>
+        <hr />
+
+        <div id="map" style="width: 800px; height: 500px; border: 1px solid #AAA;"></div>
+        <br>
+        <br>
+
+        <div>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">College</th>
+                        <th scope="col">High School</th>
+                        <th scope="col">Height</th>
+                        <th scope="col">Weight</th>
+
+                        <th scope="col">Starter Year</th>
+                        <th scope="col">All Conference Year</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{ player.first_name}}</td>
+                        <td>{{ player.last_name}}</td>
+                        <td>{{ player.College.Name|title }}</td>
+                        <td>{{ player.High_School.Name|title }}</td>
+                        <td>{{ player.Height }}</td>
+                        <td>{{ player.Weight }}</td>
+
+                        <td>{{ player.get_start_year }}</td>
+                        <td>{{ player.get_conf_year }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</main>
+
+<script type='text/javascript' src="{% static 'js/map.js' %}"></script>
+{% endblock %}
